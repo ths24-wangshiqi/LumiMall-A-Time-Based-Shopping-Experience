@@ -115,27 +115,9 @@ export default function SunMoonBackground({ isNight }) {
         </motion.div>
       </div>
 
-      {/* DAY: small accent sun bottom-left */}
-      <div className={`pointer-events-none fixed bottom-24 left-10 z-0 transition-opacity duration-1000 ${isNight ? 'opacity-0' : 'opacity-100'}`}>
-        <motion.div
-          animate={{ rotate: -360 }}
-          transition={{ duration: 60, repeat: Infinity, ease: 'linear' }}
-          className="w-36 text-foreground/12"
-        >
-          <SunIllustration className="w-full h-full" />
-        </motion.div>
-      </div>
 
-      {/* DAY: tiny sun top-center decorative */}
-      <div className={`pointer-events-none fixed top-8 left-[40%] z-0 transition-opacity duration-1000 ${isNight ? 'opacity-0' : 'opacity-100'}`}>
-        <motion.div
-          animate={{ rotate: 360 }}
-          transition={{ duration: 40, repeat: Infinity, ease: 'linear' }}
-          className="w-14 text-foreground/8"
-        >
-          <SunIllustration className="w-full h-full" />
-        </motion.div>
-      </div>
+
+
 
       {/* ── NIGHT: BIG MOON right side ── */}
       <div className={`pointer-events-none fixed top-0 right-0 w-[55vw] h-screen z-0 flex items-center justify-center transition-opacity duration-1000 ${isNight ? 'opacity-100' : 'opacity-0'}`}>
