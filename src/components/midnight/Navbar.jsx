@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ShoppingBag, Menu, X, Search, Moon, Sun } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import ExportPdfButton from '@/components/midnight/ExportPdfButton';
 
 export default function Navbar({ isNight, toggleNight, onMenuOpen, onCartOpen }) {
   const [time, setTime] = useState(new Date());
@@ -60,6 +61,9 @@ export default function Navbar({ isNight, toggleNight, onMenuOpen, onCartOpen })
 
           {/* Right: Actions */}
           <div className="flex items-center gap-4">
+            <div className="hidden md:block">
+              <ExportPdfButton />
+            </div>
             <button className="text-muted-foreground hover:text-foreground transition-colors">
               <Search className="w-4 h-4" />
             </button>
