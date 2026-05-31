@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 
 const isNightHour = () => {
+  return true; // TEMP: force night mode
   const hour = new Date().getHours();
   return hour >= 22 || hour < 6;
 };
