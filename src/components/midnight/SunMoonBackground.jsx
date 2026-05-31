@@ -85,53 +85,57 @@ const MoonIllustration = ({ className }) => (
 export default function SunMoonBackground({ isNight }) {
   return (
     <>
-      {/* Day: Sun on right side */}
+      {/* Day: Large Sun centered-right */}
       <div
-        className={`pointer-events-none fixed top-0 right-0 w-[50vw] h-screen z-0 flex items-center justify-end pr-8 transition-opacity duration-1000 ${
+        className={`pointer-events-none fixed top-0 right-[-8vw] w-[60vw] h-screen z-0 flex items-center justify-end transition-opacity duration-1000 ${
           isNight ? 'opacity-0' : 'opacity-100'
         }`}
       >
         <motion.div
           animate={{ rotate: 360 }}
-          transition={{ duration: 120, repeat: Infinity, ease: 'linear' }}
-          className="w-[40vw] max-w-[500px] text-foreground/[0.04]"
+          transition={{ duration: 100, repeat: Infinity, ease: 'linear' }}
+          style={{ color: '#2563eb', opacity: 0.13 }}
+          className="w-full"
         >
           <SunIllustration className="w-full h-full" />
         </motion.div>
       </div>
 
-      {/* Day: small sun top-left */}
-      <div className={`pointer-events-none fixed top-20 left-16 z-0 transition-opacity duration-1000 ${isNight ? 'opacity-0' : 'opacity-100'}`}>
+      {/* Day: small sun top-left accent */}
+      <div className={`pointer-events-none fixed top-16 left-10 z-0 transition-opacity duration-1000 ${isNight ? 'opacity-0' : 'opacity-100'}`}>
         <motion.div
           animate={{ rotate: -360 }}
-          transition={{ duration: 80, repeat: Infinity, ease: 'linear' }}
-          className="w-28 text-foreground/[0.06]"
+          transition={{ duration: 60, repeat: Infinity, ease: 'linear' }}
+          style={{ color: '#2563eb', opacity: 0.18 }}
+          className="w-36"
         >
           <SunIllustration className="w-full h-full" />
         </motion.div>
       </div>
 
-      {/* Night: Moon on right side */}
+      {/* Night: Large Moon centered-right */}
       <div
-        className={`pointer-events-none fixed top-0 right-0 w-[50vw] h-screen z-0 flex items-center justify-end pr-8 transition-opacity duration-1000 ${
+        className={`pointer-events-none fixed top-0 right-[-6vw] w-[58vw] h-screen z-0 flex items-center justify-end transition-opacity duration-1000 ${
           isNight ? 'opacity-100' : 'opacity-0'
         }`}
       >
         <motion.div
-          animate={{ y: [-8, 8, -8] }}
+          animate={{ y: [-12, 12, -12] }}
           transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
-          className="w-[38vw] max-w-[480px] text-primary/20"
+          style={{ color: '#a855f7', opacity: 0.22 }}
+          className="w-full"
         >
           <MoonIllustration className="w-full h-full" />
         </motion.div>
       </div>
 
-      {/* Night: small moon bottom-left */}
-      <div className={`pointer-events-none fixed bottom-20 left-16 z-0 transition-opacity duration-1000 ${isNight ? 'opacity-100' : 'opacity-0'}`}>
+      {/* Night: small moon bottom-left accent */}
+      <div className={`pointer-events-none fixed bottom-16 left-10 z-0 transition-opacity duration-1000 ${isNight ? 'opacity-100' : 'opacity-0'}`}>
         <motion.div
-          animate={{ y: [4, -4, 4] }}
-          transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-          className="w-24 text-primary/15"
+          animate={{ y: [6, -6, 6] }}
+          transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
+          style={{ color: '#a855f7', opacity: 0.25 }}
+          className="w-36"
         >
           <MoonIllustration className="w-full h-full" />
         </motion.div>
