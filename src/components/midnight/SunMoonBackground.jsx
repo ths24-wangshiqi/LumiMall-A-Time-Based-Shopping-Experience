@@ -1,83 +1,102 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-// Geometric sun SVG
 const SunIllustration = ({ className }) => (
-  <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
-    {/* Outer rays */}
+  <svg viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+    {/* Outermost dashed ring */}
+    <circle cx="150" cy="150" r="138" stroke="currentColor" strokeWidth="0.6" strokeDasharray="3 6" />
+    {/* Outer long rays x8 */}
+    {Array.from({ length: 8 }).map((_, i) => {
+      const angle = (i * 45) * Math.PI / 180;
+      return (
+        <line key={`lr${i}`}
+          x1={150 + 100 * Math.cos(angle)} y1={150 + 100 * Math.sin(angle)}
+          x2={150 + 135 * Math.cos(angle)} y2={150 + 135 * Math.sin(angle)}
+          stroke="currentColor" strokeWidth="1.5"
+        />
+      );
+    })}
+    {/* Short tick rays x16 */}
     {Array.from({ length: 16 }).map((_, i) => {
-      const angle = (i * 360) / 16;
-      const rad = (angle * Math.PI) / 180;
-      const x1 = 100 + 72 * Math.cos(rad);
-      const y1 = 100 + 72 * Math.sin(rad);
-      const x2 = 100 + 88 * Math.cos(rad);
-      const y2 = 100 + 88 * Math.sin(rad);
-      return <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke="currentColor" strokeWidth="1" />;
+      const angle = (i * 22.5) * Math.PI / 180;
+      return (
+        <line key={`sr${i}`}
+          x1={150 + 105 * Math.cos(angle)} y1={150 + 105 * Math.sin(angle)}
+          x2={150 + 120 * Math.cos(angle)} y2={150 + 120 * Math.sin(angle)}
+          stroke="currentColor" strokeWidth="0.8"
+        />
+      );
     })}
-    {/* Long rays at 8 positions */}
+    {/* Diamond tips on long rays */}
     {Array.from({ length: 8 }).map((_, i) => {
-      const angle = (i * 360) / 8;
-      const rad = (angle * Math.PI) / 180;
-      const x1 = 100 + 55 * Math.cos(rad);
-      const y1 = 100 + 55 * Math.sin(rad);
-      const x2 = 100 + 95 * Math.cos(rad);
-      const y2 = 100 + 95 * Math.sin(rad);
-      return <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke="currentColor" strokeWidth="0.5" />;
+      const angle = (i * 45) * Math.PI / 180;
+      const cx = 150 + 140 * Math.cos(angle);
+      const cy = 150 + 140 * Math.sin(angle);
+      return <circle key={`dt${i}`} cx={cx} cy={cy} r="2.5" fill="currentColor" />;
     })}
-    {/* Outer circle */}
-    <circle cx="100" cy="100" r="65" stroke="currentColor" strokeWidth="0.5" strokeDasharray="2 4" />
-    {/* Mid circle */}
-    <circle cx="100" cy="100" r="48" stroke="currentColor" strokeWidth="0.8" />
-    {/* Inner circle */}
-    <circle cx="100" cy="100" r="32" stroke="currentColor" strokeWidth="1" />
-    {/* Center fill */}
-    <circle cx="100" cy="100" r="18" stroke="currentColor" strokeWidth="1.5" />
-    {/* Decorative dots */}
-    {Array.from({ length: 8 }).map((_, i) => {
-      const angle = (i * 360) / 8 + 22.5;
-      const rad = (angle * Math.PI) / 180;
-      const cx = 100 + 40 * Math.cos(rad);
-      const cy = 100 + 40 * Math.sin(rad);
-      return <circle key={i} cx={cx} cy={cy} r="1.5" fill="currentColor" />;
+    {/* Rings */}
+    <circle cx="150" cy="150" r="95" stroke="currentColor" strokeWidth="1" />
+    <circle cx="150" cy="150" r="72" stroke="currentColor" strokeWidth="1.5" />
+    <circle cx="150" cy="150" r="50" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" />
+    {/* Inner decorative dots on ring */}
+    {Array.from({ length: 12 }).map((_, i) => {
+      const angle = (i * 30) * Math.PI / 180;
+      const cx = 150 + 72 * Math.cos(angle);
+      const cy = 150 + 72 * Math.sin(angle);
+      return <circle key={`ring${i}`} cx={cx} cy={cy} r="2" fill="currentColor" />;
     })}
+    {/* Center sun core */}
+    <circle cx="150" cy="150" r="30" stroke="currentColor" strokeWidth="2" />
+    <circle cx="150" cy="150" r="18" stroke="currentColor" strokeWidth="1.5" />
+    <circle cx="150" cy="150" r="8" fill="currentColor" />
+    {/* Crosshair in center */}
+    <line x1="150" y1="125" x2="150" y2="175" stroke="currentColor" strokeWidth="0.8" opacity="0.4" />
+    <line x1="125" y1="150" x2="175" y2="150" stroke="currentColor" strokeWidth="0.8" opacity="0.4" />
   </svg>
 );
 
-// Geometric moon SVG
 const MoonIllustration = ({ className }) => (
-  <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
-    {/* Outer decorative circle */}
-    <circle cx="100" cy="100" r="80" stroke="currentColor" strokeWidth="0.4" strokeDasharray="1 5" />
-    {/* Crescent shape via clip */}
+  <svg viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+    {/* Outer orbit ring */}
+    <circle cx="150" cy="150" r="135" stroke="currentColor" strokeWidth="0.6" strokeDasharray="2 8" />
+    {/* Crescent main shape */}
     <path
-      d="M 100 30 A 70 70 0 1 1 100 170 A 45 45 0 1 0 100 30 Z"
-      stroke="currentColor" strokeWidth="1.2" fill="none"
+      d="M 150 35 A 115 115 0 1 1 150 265 A 75 75 0 1 0 150 35 Z"
+      stroke="currentColor" strokeWidth="2" fill="none"
     />
-    {/* Inner crescent detail */}
+    {/* Inner crescent echo */}
     <path
-      d="M 100 50 A 50 50 0 1 1 100 150 A 30 30 0 1 0 100 50 Z"
-      stroke="currentColor" strokeWidth="0.6" fill="none" opacity="0.6"
+      d="M 150 65 A 85 85 0 1 1 150 235 A 55 55 0 1 0 150 65 Z"
+      stroke="currentColor" strokeWidth="1" fill="none" opacity="0.5"
     />
-    {/* Stars */}
+    {/* Stars with cross-hairs — large */}
     {[
-      [145, 60, 3],
-      [158, 90, 2],
-      [150, 130, 4],
-      [165, 65, 2],
-      [140, 100, 1.5],
+      [215, 80, 5],
+      [228, 130, 3.5],
+      [210, 175, 4.5],
+      [235, 95, 2.5],
     ].map(([cx, cy, r], i) => (
       <g key={i}>
-        <circle cx={cx} cy={cy} r={r} fill="currentColor" opacity="0.8" />
-        <line x1={cx - r * 2.5} y1={cy} x2={cx + r * 2.5} y2={cy} stroke="currentColor" strokeWidth="0.5" opacity="0.5" />
-        <line x1={cx} y1={cy - r * 2.5} x2={cx} y2={cy + r * 2.5} stroke="currentColor" strokeWidth="0.5" opacity="0.5" />
+        <circle cx={cx} cy={cy} r={r} fill="currentColor" />
+        <line x1={cx - r * 3} y1={cy} x2={cx + r * 3} y2={cy} stroke="currentColor" strokeWidth="0.7" opacity="0.6" />
+        <line x1={cx} y1={cy - r * 3} x2={cx} y2={cy + r * 3} stroke="currentColor" strokeWidth="0.7" opacity="0.6" />
       </g>
     ))}
-    {/* Decorative arc lines */}
-    <path d="M 60 100 Q 80 70 100 100" stroke="currentColor" strokeWidth="0.5" fill="none" opacity="0.4" />
-    <path d="M 60 110 Q 75 85 95 110" stroke="currentColor" strokeWidth="0.5" fill="none" opacity="0.3" />
-    {/* Bottom detail dots */}
-    {Array.from({ length: 5 }).map((_, i) => (
-      <circle key={i} cx={70 + i * 10} cy={155} r="1" fill="currentColor" opacity={0.3 + i * 0.1} />
+    {/* Small scattered stars */}
+    {[
+      [240, 150], [205, 55], [248, 170], [220, 210], [195, 230],
+    ].map(([cx, cy], i) => (
+      <circle key={`s${i}`} cx={cx} cy={cy} r="1.5" fill="currentColor" opacity="0.7" />
+    ))}
+    {/* Constellation lines */}
+    <line x1="215" y1="80" x2="228" y2="130" stroke="currentColor" strokeWidth="0.5" opacity="0.3" />
+    <line x1="228" y1="130" x2="210" y2="175" stroke="currentColor" strokeWidth="0.5" opacity="0.3" />
+    {/* Decorative arc detail inside crescent */}
+    <path d="M 110 130 Q 130 100 155 130" stroke="currentColor" strokeWidth="0.8" fill="none" opacity="0.4" />
+    <path d="M 108 155 Q 125 125 150 150" stroke="currentColor" strokeWidth="0.6" fill="none" opacity="0.3" />
+    {/* Bottom dot row */}
+    {Array.from({ length: 7 }).map((_, i) => (
+      <circle key={`bd${i}`} cx={100 + i * 12} cy={240} r="1.2" fill="currentColor" opacity={0.2 + i * 0.06} />
     ))}
   </svg>
 );
@@ -85,80 +104,81 @@ const MoonIllustration = ({ className }) => (
 export default function SunMoonBackground({ isNight }) {
   return (
     <>
-      {/* Day: Sun on right side */}
-      <div
-        className={`pointer-events-none fixed top-0 right-0 w-[50vw] h-screen z-0 flex items-center justify-end pr-8 transition-opacity duration-1000 ${
-          isNight ? 'opacity-0' : 'opacity-100'
-        }`}
-      >
+      {/* ── DAY: BIG SUN right side ── */}
+      <div className={`pointer-events-none fixed top-0 right-0 w-[55vw] h-screen z-0 flex items-center justify-center transition-opacity duration-1000 ${isNight ? 'opacity-0' : 'opacity-100'}`}>
         <motion.div
           animate={{ rotate: 360 }}
-          transition={{ duration: 120, repeat: Infinity, ease: 'linear' }}
-          className="w-[40vw] max-w-[500px] text-foreground/[0.04]"
+          transition={{ duration: 90, repeat: Infinity, ease: 'linear' }}
+          className="w-[52vw] max-w-[640px] text-foreground/10"
         >
           <SunIllustration className="w-full h-full" />
         </motion.div>
       </div>
 
-      {/* Day: small sun top-left */}
-      <div className={`pointer-events-none fixed top-20 left-16 z-0 transition-opacity duration-1000 ${isNight ? 'opacity-0' : 'opacity-100'}`}>
+      {/* DAY: small accent sun bottom-left */}
+      <div className={`pointer-events-none fixed bottom-24 left-10 z-0 transition-opacity duration-1000 ${isNight ? 'opacity-0' : 'opacity-100'}`}>
         <motion.div
           animate={{ rotate: -360 }}
-          transition={{ duration: 80, repeat: Infinity, ease: 'linear' }}
-          className="w-28 text-foreground/[0.06]"
+          transition={{ duration: 60, repeat: Infinity, ease: 'linear' }}
+          className="w-36 text-foreground/12"
         >
           <SunIllustration className="w-full h-full" />
         </motion.div>
       </div>
 
-      {/* Night: Moon on right side */}
-      <div
-        className={`pointer-events-none fixed top-0 right-0 w-[50vw] h-screen z-0 flex items-center justify-end pr-8 transition-opacity duration-1000 ${
-          isNight ? 'opacity-100' : 'opacity-0'
-        }`}
-      >
+      {/* DAY: tiny sun top-center decorative */}
+      <div className={`pointer-events-none fixed top-8 left-[40%] z-0 transition-opacity duration-1000 ${isNight ? 'opacity-0' : 'opacity-100'}`}>
         <motion.div
-          animate={{ y: [-8, 8, -8] }}
-          transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
-          className="w-[38vw] max-w-[480px] text-primary/20"
+          animate={{ rotate: 360 }}
+          transition={{ duration: 40, repeat: Infinity, ease: 'linear' }}
+          className="w-14 text-foreground/8"
+        >
+          <SunIllustration className="w-full h-full" />
+        </motion.div>
+      </div>
+
+      {/* ── NIGHT: BIG MOON right side ── */}
+      <div className={`pointer-events-none fixed top-0 right-0 w-[55vw] h-screen z-0 flex items-center justify-center transition-opacity duration-1000 ${isNight ? 'opacity-100' : 'opacity-0'}`}>
+        <motion.div
+          animate={{ y: [-10, 10, -10] }}
+          transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
+          className="w-[50vw] max-w-[600px] text-primary/30"
         >
           <MoonIllustration className="w-full h-full" />
         </motion.div>
       </div>
 
-      {/* Night: small moon bottom-left */}
-      <div className={`pointer-events-none fixed bottom-20 left-16 z-0 transition-opacity duration-1000 ${isNight ? 'opacity-100' : 'opacity-0'}`}>
+      {/* NIGHT: small accent moon top-left */}
+      <div className={`pointer-events-none fixed top-16 left-10 z-0 transition-opacity duration-1000 ${isNight ? 'opacity-100' : 'opacity-0'}`}>
         <motion.div
-          animate={{ y: [4, -4, 4] }}
-          transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-          className="w-24 text-primary/15"
+          animate={{ y: [4, -6, 4] }}
+          transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
+          className="w-32 text-primary/22"
         >
           <MoonIllustration className="w-full h-full" />
         </motion.div>
       </div>
 
-      {/* Night: floating star dots */}
-      {isNight && (
-        <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
-          {[
-            { top: '15%', left: '20%', size: 2, delay: 0 },
-            { top: '30%', left: '8%', size: 1.5, delay: 1 },
-            { top: '60%', left: '25%', size: 1, delay: 2 },
-            { top: '45%', left: '12%', size: 2.5, delay: 0.5 },
-            { top: '75%', left: '35%', size: 1.5, delay: 1.5 },
-            { top: '20%', left: '70%', size: 1, delay: 3 },
-            { top: '80%', left: '60%', size: 2, delay: 0.8 },
-          ].map((star, i) => (
-            <motion.div
-              key={i}
-              style={{ top: star.top, left: star.left, width: star.size, height: star.size }}
-              className="absolute rounded-full bg-primary"
-              animate={{ opacity: [0.3, 1, 0.3] }}
-              transition={{ duration: 2 + i * 0.5, repeat: Infinity, delay: star.delay }}
-            />
-          ))}
-        </div>
-      )}
+      {/* NIGHT: floating stars */}
+      {[
+        { top: '12%', left: '18%', size: 3, delay: 0 },
+        { top: '28%', left: '6%',  size: 2, delay: 1 },
+        { top: '55%', left: '22%', size: 1.5, delay: 2 },
+        { top: '42%', left: '10%', size: 3.5, delay: 0.5 },
+        { top: '72%', left: '32%', size: 2, delay: 1.5 },
+        { top: '18%', left: '65%', size: 1.5, delay: 3 },
+        { top: '82%', left: '55%', size: 2.5, delay: 0.8 },
+        { top: '35%', left: '48%', size: 1,   delay: 2.2 },
+        { top: '65%', left: '8%',  size: 2,   delay: 1.2 },
+      ].map((star, i) => (
+        <motion.div
+          key={i}
+          style={{ top: star.top, left: star.left, width: star.size * 2, height: star.size * 2 }}
+          className={`pointer-events-none fixed rounded-full bg-primary z-0 transition-opacity duration-1000 ${isNight ? 'opacity-100' : 'opacity-0'}`}
+          animate={{ opacity: isNight ? [0.3, 1, 0.3] : 0 }}
+          transition={{ duration: 2 + i * 0.4, repeat: Infinity, delay: star.delay }}
+        />
+      ))}
     </>
   );
 }
