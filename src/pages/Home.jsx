@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNightMode } from '@/lib/useNightMode';
 import Navbar from '@/components/midnight/Navbar';
 import ProgressLine from '@/components/midnight/ProgressLine';
+import SunMoonBackground from '@/components/midnight/SunMoonBackground';
 import HeroSection from '@/components/midnight/HeroSection';
 import TimeBanner from '@/components/midnight/TimeBanner';
 import ProductGrid from '@/components/midnight/ProductGrid';
@@ -19,6 +20,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-background text-foreground font-body">
+      <SunMoonBackground isNight={isNight} />
       <ProgressLine />
       <Navbar
         isNight={isNight}

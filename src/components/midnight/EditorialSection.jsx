@@ -4,7 +4,7 @@ import { ArrowRight } from 'lucide-react';
 
 export default function EditorialSection() {
   return (
-    <section className="py-20 lg:py-32 border-t border-border">
+    <section className="py-20 lg:py-32 border-t border-border relative z-10">
       <div className="max-w-[1440px] mx-auto px-6 lg:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
           {/* Image */}
