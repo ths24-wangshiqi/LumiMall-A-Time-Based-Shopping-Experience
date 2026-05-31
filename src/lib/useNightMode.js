@@ -1,12 +1,16 @@
 import { useState, useEffect } from 'react';
 
+const isNightHour = () => {
+  const hour = new Date().getHours();
+  return hour >= 22 || hour < 6;
+};
+
 export function useNightMode() {
-  const [isNight, setIsNight] = useState(false);
+  const [isNight, setIsNight] = useState(isNightHour);
 
   useEffect(() => {
     const checkTime = () => {
-      const hour = new Date().getHours();
-      const nightTime = hour >= 22 || hour < 5;
+      const nightTime = isNightHour();
       setIsNight(nightTime);
       
       if (nightTime) {
