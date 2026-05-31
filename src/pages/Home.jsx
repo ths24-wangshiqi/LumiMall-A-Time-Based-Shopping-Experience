@@ -12,6 +12,8 @@ import EditorialSection from '@/components/midnight/EditorialSection';
 import Footer from '@/components/midnight/Footer';
 import FullScreenMenu from '@/components/midnight/FullScreenMenu';
 import CartDrawer from '@/components/midnight/CartDrawer';
+import NightNoiseOverlay from '@/components/midnight/NightNoiseOverlay';
+import NightMouseGlow from '@/components/midnight/NightMouseGlow';
 
 export default function Home() {
   const { isNight, toggleNight } = useNightMode();
@@ -21,6 +23,8 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-background text-foreground font-body">
       <SunMoonBackground isNight={isNight} />
+      <NightNoiseOverlay isNight={isNight} />
+      <NightMouseGlow isNight={isNight} />
       <ProgressLine />
       <Navbar
         isNight={isNight}
