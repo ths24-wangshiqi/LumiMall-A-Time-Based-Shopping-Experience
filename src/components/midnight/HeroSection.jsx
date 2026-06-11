@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, ChevronDown } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const HERO_IMAGE = 'https://media.base44.com/images/public/6a1bf3cc65543c659d8e8283/8ec024962_generated_244d8e48.png';
 const TEXTURE_IMAGE = 'https://media.base44.com/images/public/6a1bf3cc65543c659d8e8283/a0ac2a2a6_generated_f7384178.png';
@@ -83,12 +84,15 @@ export default function HeroSection({ isNight }) {
               }}
               className="transition-transform duration-700 ease-out"
             >
-              <div className="relative aspect-[3/4] max-h-[80vh] overflow-hidden">
+              <Link to="/product/WB31-00" className="block relative aspect-[3/4] max-h-[80vh] overflow-hidden group cursor-pointer">
                 <img
                   src={HERO_IMAGE}
                   alt="WB31-00 Technical Jacket"
-                  className="w-full h-full object-cover object-center"
+                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
                 />
+                <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/10 transition-colors duration-300 flex items-center justify-center">
+                  <span className="font-mono text-[10px] tracking-[0.3em] text-background bg-foreground/80 px-4 py-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">VIEW DETAIL</span>
+                </div>
                 {/* Technical overlay */}
                 <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-background/80 to-transparent">
                   <div className="flex justify-between items-end">
@@ -110,7 +114,7 @@ export default function HeroSection({ isNight }) {
                   <div>IW13A213-28</div>
                   <div className="mt-1">WANGSHIQI</div>
                 </div>
-              </div>
+              </Link>
             </motion.div>
           </div>
         </div>

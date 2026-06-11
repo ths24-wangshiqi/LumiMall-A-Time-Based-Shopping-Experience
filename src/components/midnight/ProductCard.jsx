@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const CATEGORY_BADGE_COLORS = {
   FASHION: 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300',
@@ -18,7 +19,10 @@ export default function ProductCard({ product, index }) {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay: (index % 8) * 0.06 }}
-      className="group cursor-pointer"
+    >
+    <Link
+      to={`/product/${product.code}`}
+      className="block group cursor-pointer"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -86,6 +90,7 @@ export default function ProductCard({ product, index }) {
           ))}
         </div>
       </div>
+    </Link>
     </motion.div>
   );
 }
