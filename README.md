@@ -1,18 +1,65 @@
+# LumiMall
 
-**Prerequisites:** 
+朝と夜で商品ラインナップとWebサイトのデザインが変化するECサイトです。
 
-1. Clone the repository using the project's Git URL 
-2. Navigate to the project directory
-3. Install dependencies: `npm install`
-4. Create an `.env.local` file and set the right environment variables
+## 概要
 
+LumiMallは、時間帯に応じて異なる商品を表示し、それに合わせてWebサイト全体のデザインも変化するECサイトです。
+
+朝と夜それぞれの雰囲気に合わせた商品表示や配色を取り入れることで、時間帯ごとに異なるショッピング体験を提供することを目指しました。
+
+## 主な機能・特徴
+
+- 朝と夜で異なる商品ラインナップの表示
+- 時間帯に応じたWebサイトのデザイン変更
+- 商品の雰囲気に合わせた画面デザイン
+- 直感的に操作できるユーザーインターフェース
+
+## 使用技術
+
+- JavaScript
+- React
+- Vite
+- Base44
+
+## セットアップ
+
+### 1. リポジトリのクローン
+
+```bash
+git clone <repository-url>
 ```
+
+### 2. プロジェクトディレクトリへ移動
+
+```bash
+cd LumiMall
+```
+
+### 3. 依存関係のインストール
+
+```bash
+npm install
+```
+
+### 4. 環境変数の設定
+
+プロジェクトのルートディレクトリに `.env.local` を作成し、以下の環境変数を設定してください。
+
+```env
 VITE_BASE44_APP_ID=your_app_id
 VITE_BASE44_APP_BASE_URL=your_backend_url
-
-e.g.
-VITE_BASE44_APP_ID=cbef744a8545c389ef439ea6
-VITE_BASE44_APP_BASE_URL=https://my-to-do-list-81bfaad7.base44.app
 ```
 
-Run the app: `npm run dev`
+### 5. 開発サーバーの起動
+
+```bash
+npm run dev
+```
+
+ターミナルに表示されるローカルURLにアクセスすると、アプリケーションを確認できます。
+
+## 補足
+
+- 実行にはBase44の環境変数設定が必要です。
+- `.env.local` などの環境設定ファイルや認証情報はGitHubに公開しないでください。
